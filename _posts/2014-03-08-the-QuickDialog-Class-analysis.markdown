@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "the QuickDialog class layout analysis"
+title:      "The QuickDialog class layout analysis"
 subtitle:   "QuickDialog结构解析"
 date:       2014-03-08
 author:     "mayfly"

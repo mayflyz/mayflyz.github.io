@@ -1,13 +1,15 @@
 ---
-layout: post
-title: 汉字转换为拼音
+layout:     post
+title:      "汉字转换为拼音"
+subtitle:   ""
+date:       2014-06-26
+author:     "mayfly"
+header-img: ""
+tags:
+    - iOS
 ---
 
-{{ page.title }}
-================
-<p class="meta">26 June 2014 - tony cap</p>
-
-#汉字转拼音的库主要是：
+## 汉字转拼音的库主要是：
 
 * pinyin　  　  https://github.com/hotoo/pinyin
 * PYMethod      https://github.com/a85816841/PotentialGragonSnail/tree/master/ql/lib/pinying
@@ -20,7 +22,7 @@ title: 汉字转换为拼音
 * POAPinyin是把所有拼音与之对应的汉字组成一个表,到时候往这个表里查询(原生convert方法)改进的quickConvert方法是先得到一个汉字unicode值的上下限,然后转换上面的表成 unicode--拼音 这样的表,查询的时候就是哈希查找,更快,要是这个unicode不连续就会有很大的问题了(这个表里面果然缺了字:"?g?i?k仍?????????????x?z?{????佘????|愣扔?Y楞特????????????????????酿???铽").这个函数还会跳过一些非ascii符号.另一个方法stringConvert修复了非ascii码这个问题.使用的时候最好把上面提到的字加进表里.
  
 
-##比较：
+## 比较：
 
 * 大小 pinyin最小了,POAPinyin的声明就快500行了.
 * 速度 其实三者差不多,但是不要用POAPinyin原生的那个convert,那个每次都遍历查找很慢.
