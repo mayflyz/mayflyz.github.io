@@ -4,6 +4,7 @@ title:      "关于在iOS中使用Google Protocol Buffer的使用体验"
 subtitle:   "Protocol Buffer的安装使用简介"
 date:       2014-08-16
 author:     "mayfly"
+header-img: "img/header/post-bg-ios.jpg"
 tags:
     - iOS
     - Protocol Buffer

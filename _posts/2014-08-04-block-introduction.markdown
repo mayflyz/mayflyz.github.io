@@ -4,7 +4,7 @@ title:      "Block 相关"
 subtitle:   ""
 date:       2014-08-04
 author:     "转载"
-header-img: ""
+header-img: "img/header/post-bg-ios.jpg"
 tags:
     - iOS
 ---

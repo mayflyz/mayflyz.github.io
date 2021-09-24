@@ -4,7 +4,7 @@ title:      "The QuickDialog class layout analysis"
 subtitle:   "QuickDialog结构解析"
 date:       2014-03-08
 author:     "mayfly"
-header-img: ""
+header-img: "img/header/post-bg-ios.jpg"
 tags:
     - iOS
 ---

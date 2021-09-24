@@ -4,7 +4,7 @@ title:      "Block剧终：Objective-C中的闭包性和匿名函数(转)"
 subtitle:   ""
 date:       2014-08-04
 author:     "转载"
-header-img: "bjective-C中的闭包性和匿名函数"
+header-img: "img/header/post-bg-ios.jpg"
 tags:
     - iOS
 ---
