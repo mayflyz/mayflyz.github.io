@@ -41,18 +41,18 @@ Google protocol Buffer 的文档与地址是http://code.google.com/p/protobuf/
 2. 用命令切换至ProtocolBuffers-2.2.0-Source目录下。
 3.  使用：
 
-```
+```shell
 ./autogen.sh
 ```
 4. 在终端下输入
-``` 
+``` shell
 ./configure (如果说没有权限，chmod +x configure)
 ```
 如果不是管理员身份，需要输入：./configure - -prefix=$INSTALL_DIR 后面表示你要把protobuf安装的路径，需要是绝对路径。
 
 5. 依次在终端下输入：
 
-```
+```shell
 make
 make check
 make install
@@ -65,7 +65,7 @@ make install
 1. 生成Object-C代码
     创建一个Person.proto文件把该文件存放至想要的文件夹中，文件内容如下：
 
-```
+```objc
 message Person {
 required string name = 1;
 required int32 id = 2;
@@ -88,7 +88,7 @@ repeated PhoneNumber phone = 4;
 
 2. 在ProtocolBuffers-2.2.0-Source下创建这样一个子目录build/objc以便存放我们生成的classes
 现在执行命令:
-```
+```shell
 protoc --proto_path=srcFolder --objc_out=desFolder
   srcFolder/Person.proto
 ```
@@ -108,7 +108,7 @@ protoc --proto_path=srcFolder --objc_out=desFolder
 3. 在需要使用的地方引入头文件：`#import “Person.pb.h”`
 
 使用
-```
+```objc
 Person *person = [[[[[Person builder] setName:@"极致"] setId:1] setEmail:@"abc@163.com"] build];
 NSData *data = [person data];
 NSString *basePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -128,13 +128,12 @@ if ([data writeToFile:path atomically:YES]) {
 
 输出打印的结果如下：
 
-```
+```objc
 2014-08-16 11:46:15.502 protocol[18670:60b] 
  id 1 
  name: 极致 
  email: abc@163.com 
 ```
-
 
 参考文章：
 http://www.easymorse.com/index.php/archives/644  

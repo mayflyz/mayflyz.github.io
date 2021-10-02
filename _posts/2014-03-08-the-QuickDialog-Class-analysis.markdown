@@ -75,8 +75,8 @@ cd your-project-location git submodule add git@github.com:escoz/QuickDialog.git
 * 最后找到 “Other Linker Flags”选择项，并且添加至-ObjC 
 
 **OK，that should be all there is. Here’s how you can create and display your first dialog from inside another UIViewController:**
- 
-```
+
+```objc
  QRootElement *root = [[QRootElement alloc] init]; 
  root.title = @"Hello World"; 
  root.grouped = YES; 

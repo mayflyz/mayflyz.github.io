@@ -20,14 +20,14 @@ tags:
 就如名字暗示的一样，匿名函数实际上就是一个没有名字或者标示(identifier)的函数。匿名函数只有内容(也可以叫做body)，我们可以将其存储在一个变量中，以便之后使用，或者将其当做一个参数传递给另外一个函数使用。
 在脚本语言的回调中经常使用到这个概念。
 例如，在下面的JavaScript中，有一个名为foo的标准函数，接收一个callback当做参数，在函数中，调用了这个callback：
-```
+```swift
 function foo( callback )
 {
 	callback();
 }
 ```
 这里有可能是定义了另外一个标准函数， 然后将这个标准函数当做参数传递给上面的函数：
-```
+```swift
 function bar()
 {
 	alert( 'hello, world' );
@@ -38,7 +38,7 @@ foo( bar );
 不过这样一来，bar函数就会被声明在全局范围内，这就会带来一个风险：被另外一个相同名称的函数覆盖(override)了。
 
 但是别担心，JavaScript语言允许callback函数在调用的时候才进行声明：
-```
+```swift
 foo
 {
 	function()
@@ -50,7 +50,7 @@ foo
 在上面，可以看到这个callback实际上并没有标示(identifier)。它也不会存在于全局范围，因此也不会与别的已有函数产生冲突。
 
 我们也可以把callback存储到一个变量中，同样也不回存在于全局范围，不过我们可以通过这个变量对这个callback进行重复利用：
-```
+```swift
 myCallback = function()
 {
 	alert( 'hello, world' );
@@ -62,7 +62,7 @@ foo( myCallback );
 闭包性这个概念是允许一个函数访问其所声明上下文中的变量，甚至是在不同的运行上下文中。
 
 下面我们再来看看JavaScript的相关代码：
-```
+```swift
 function foo( callback )
 {
 	alert( callback() );
@@ -94,7 +94,7 @@ bar();
 也就是说在不同的函数中(运行上下文中)，一个函数可以访问到变量所声明上下文中的内容。
 
 因此上面的代码中，callback可以访问到str变量——即使这个callback所在的foo函数不能直接访问这个str变量。
- 
+
 ##2、Objective-C中的实现
 实际上闭包性和匿名函数在Objective-C中是可以使用的，只不过Objective-C是构建于C语言之上，属于强类型编译语言，所以跟上面介绍的解释性脚本语言有许多不同之处。
 
@@ -104,13 +104,13 @@ bar();
 
 block的语法有一点点棘手，不过要是熟悉函数指针的话，就非常容易理解了。
 下面是block的原型：
-```
+```swift
 NSString * ( ^ myBlock )( int );
 ```
 上面的代码是声明了一个block(^)原型，名字就叫做myBlock，携带一个int参数，返回只为NSString类型的指针。
 
 下面来看看block的定义：
-```
+```swift
 myBlock = ^( int number )
 {
 	return [ NSString stringWithFormat: @"Passed number: %i", number ];
@@ -124,11 +124,11 @@ myBlock = ^( int number )
 
 如果没有写这个分号，编译器会产生一个错误，当然也不会生成可执行文件。
 定义好block之后，就可以像使用标准函数一样使用它了：
-```
+```swift
 myBlock(5);
 ```
 下面是完整的Objective-C程序源代码：
-```
+```objc
 #import <Cocoa/Cocoa.h>
 
 int main( void )
@@ -157,7 +157,9 @@ gcc -Wall -framework Cocoa -o test test.m
 	./test
 如果不把block赋值给变量的话，可以忽略掉block原型的声明，例如直接将block当做参数进行传递。如下所示：
 
-	someFunction( ^ NSString * ( void ) { return @"hello, world" } );
+```objc
+someFunction( ^ NSString * ( void ) { return @"hello, world" } );
+```
 
 注意，上面这种情况必须声明返回值的类型——这里是返回NSString对象。
 
@@ -166,7 +168,7 @@ gcc -Wall -framework Cocoa -o test test.m
 之前说过了，block可以当做参数传递给某个C函数。
 
 如下所示：
-```
+```objc
 void logBlock( NSString * ( ^ theBlock )( int ) )
 {
 	NSLog( @"Block returned: %@", theBlock() );
@@ -175,7 +177,7 @@ void logBlock( NSString * ( ^ theBlock )( int ) )
 由于Objective-C是强制类型语言，所以作为函数参数的block也必须要指定返回值的类型，以及相关参数类型(如果需要的话)。
 
 其实在Objective-C方法中也是一样的：
-```
+```objc
 - ( void )logBlock: ( NSString * ( ^ )( int ) )theBlock;
 ```
 
@@ -183,7 +185,7 @@ void logBlock( NSString * ( ^ theBlock )( int ) )
 之前有说过，闭包性在Objective-C中是可用的，只不过其行为跟解释性语言有所不同罢了。
 
 我们来看看下面的程序：
-```
+```objc
 #import <Cocoa/Cocoa.h>
 
 void logBlock( int ( ^ theBlock )( void ) )
@@ -223,7 +225,7 @@ int main( void )
 下面来看看第一点不同之处：通过block进行闭包的变量是const的。也就是说不能在block中直接修改这些变量。
 
 来看看当block试着增加x的值时，会发生什么：
-```
+```objc
 myBlock = ^( void )
 {
 	x++
@@ -236,7 +238,7 @@ myBlock = ^( void )
 不过也别担心，为了允许在block中修改变量，也是可以做到的：用__block关键字来声明变量即可。
 
 基于之前的代码，给x变量添加__block关键字，如下：
-```
+```objc
 __block int x;
 ```
 ### 2.3 内存管理
@@ -254,7 +256,7 @@ Block可以用在许多不同的环境中，这样可以让代码更加简单，
 在PHP程序员眼里，该方法就如一个array_filter()。
 
 首先，需要为NSArray类声明一个category。（通过category可以给已有的类添加新方法）。
-```
+```objc
 @interface NSArray( BlockExample )
 
 + ( NSArray * )arrayByFilteringArray: ( NSArray * )source withCallback: ( BOOL ( ^ )( id ) )callback;
@@ -268,7 +270,7 @@ Block可以用在许多不同的环境中，这样可以让代码更加简单，
 block只有一个参数，代表数组中的某个元素。
 
 我们来看看该方法的具体实现：
-```
+```objc
 @implementation NSArray( BlockExample )
 
 + ( NSArray * )arrayByFilteringArray: ( NSArray * )source withCallback: ( BOOL ( ^ )( id ) )callback
@@ -296,7 +298,7 @@ block只有一个参数，代表数组中的某个元素。
 然后对source array中的每个元素进行迭代， 如果callback返回值为YES的话，就将该元素添加到result数组中。
 
 下面是使用该方法的一个完整示例：利用callback构建一个数组：该数组中只包含source array中为NSString类型的元素：
-```
+```objc
 #import <Cocoa/Cocoa.h>
 
 @interface NSArray( BlockExample )
