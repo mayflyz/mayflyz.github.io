@@ -46,18 +46,28 @@ Python最新源码、二进制文档等可以在Python官网查看，如下图�
 
 #### 2.Linux系统下的Python安装
 Linux发行版本众多，大多数都默认支持Python环境。这里以Ubuntu为例说明如何在Linux下安装Python 3。在Ubuntu环境下，可以直接使用包管理命令`apt-get`和`pip`（pip是Python的一个安装管理扩展库的工具）进行安装和升级。
+
 （1）使用pip install命令安装第三方库：
-`sudo apt-get install python-pip`
+
+````bash
+sudo apt-get install python-pip
+````
+
 （2）使用apt-get命令安装Python：
-`sudo apt-get install python-dev`
+
+```bash
+sudo apt-get install python-dev
+```
 
 #### 3.Mac OS下的Python安装
 Mac OS X 10.8以上的系统预安装了Python 2.7，可以在终端通过`python –v`命令查看Python版本。安装Python 3版本有两种方式：一种是使用命令行安装，即使用`brew install Python3`命令自动安装，然后配置环境变量；另一种是使用安装包进行安装，安装过程如图2-3所示。
 
-![Mac安装界面](img/python/Mac安装界面.jpg)
+![Mac安装界面](img/python/Mac安装界面.png)
 
 在Mac OS下安装完Python后，Python版本仍然是之前的默认版本，需要配置才能更新为最新版本。环境变量设置如下：
+
 （1）在命令行中输入`“which python3”`获取输入路径。
+
 （2）在.bash_profile文件中添加Python3的安装路径：
 
 ```
@@ -296,7 +306,7 @@ Python语言支持多种类型的运算符，包括算术运算符、比较（�
 下表列出了常用的算术运算符，这里假设变量a为6、变量b为8。
 
 | 运算符 |	描述|	示例|
-| :-: | -- | :-- |
+| - | -- | -- |
 | + | 加：两个对象相加 | a + b，输出结果为14|
 | - | 减：负数，或是一个数减去另一个数 | a – b，输出结果为-2|
 | * | 乘：两个数相乘，或是返回一个被重复若干次的字符串 | a * b，输出结果为48|
@@ -307,6 +317,7 @@ Python语言支持多种类型的运算符，包括算术运算符、比较（�
 
 #### 2. 比较（关系）运算符
 所有比较运算符返回1表示真，返回0表示假，与特殊的变量True和False等价。下表列出了常用的比较运算符，同样假设变量a为6、变量b为8。
+
 | 运算符 |	描述|	示例|
 | -- | -- | -- |
 |== | 等于：比较对象是否相等 | a == b，返回False|
@@ -640,6 +651,7 @@ Python模块（Module）是代码的一种组织形式，把许多有关联的�
 Python有很多标准库和开源的第三方代码，将需要的功能模块导入当前程序就可以直接使用。Python使用import关键字导入模块，主要方式有两种：
 * **import模块名：导入模块中所有成员，包括变量、函数和类等，并且在使用模块中的成员时需要该模块名作为前缀。**
 * **from 模块名 import 成员名：导入模块中指定的成员，在使用该成员时无须附加任何前缀，直接使用成员名即可。**
+
 #### 1. import语句
 使用import语句引入模块的语法如下：
 ```python
@@ -668,6 +680,7 @@ print(o.sep)
 cls.py
 /
 ```
+
 #### 2. from…import 语句
 Python的from语句可以从模块中导入指定部分到当前文件，语法如下：
 ```python
@@ -690,11 +703,8 @@ print(p)
 ### 6.2  模块的搜索路径
 当使用import语句导入模块后，Python解析器会按照以下顺序查找指定模块：
 * **在当前目录（执行程序所在目录）下查找。**
-
-* **在PYTHONPATH环境变量中的目录下查找。****
-
+* **在PYTHONPATH环境变量中的目录下查找。**
 * **在Python默认安装目录下查找。**
-
 以上所涉及的目录都存在标准sys的sys.path变量中，通过此变量我们可以指定程序文件支持查找的所有目录。
 
 ## 7、Python面向对象编程
@@ -702,6 +712,7 @@ print(p)
 * **面向过程编程以过程为核心**，采用结构化、模块化和自顶向下的设计方法，把系统划分为不同的模块，降低了系统的复杂性。面向过程编程最重要的特点是函数，通过函数调用一个个子函数，程序运行的逻辑是事先决定好的。
 * **面向对象编程以对象为核心**，从更高的层次进行系统建模，把相关数据和方法组织为一个整体来看待，是对现实世界理解和抽象的方法。面向对象编把系统视为对象的集合，每个对象可以接收其他对象发过来的消息并处理这些消息。面向对象编程的程序执行就是一系列消息在各个对象之间进行传递与处理。
 Python语言在设计之初就是一门面向对象的语言。面向对象编程内容繁多，本章仅对Python的面向对象编程做一个简单介绍。
+
 ### 7.1  Python类创建和实例
 使用class语句来创建一个新类，在class关键之后为类的名称，并以冒号结尾，语法如下：
 ```python
@@ -710,6 +721,7 @@ class ClassName:
 
    class_suite  #类体
 ```
+
 类的帮助信息可以通过ClassName.doc查看。class_suite由类成员、方法、数据属性组成。下面使用Python定义一个Student类。
 ```python
 #Python定义学生类
@@ -745,6 +757,7 @@ lucy  score:  86
 tony  age is  19
 tony  score:  92
 ```
+
 ### 7.2  Python内置类属性
 Python中内置了类属性（创建了新类系统时就会主动创建这些属性），常见的如下：
 
@@ -756,7 +769,6 @@ Python中内置了类属性（创建了新类系统时就会主动创建这些�
 \__doc__ | 类文档，子类不继承 | help(类或实例)
 \__name__ | 类名 | 实例.\__name__
 \__module__ | 类定义所在的模块 | 实例.\__module__
-
 对上述Student类添加__str__实现以及测试代码：
 ```python
 # Python内置类验证
@@ -782,6 +794,7 @@ Student.__module__: __main__
 Student.__bases__: (<class 'object'>,)
 Student.__dict__: {'__module__': '__main__', '__doc__': '所有学生的基类，描述学生基本信息', '__init__': <function Student.__init__ at 0x7fc84fa2b9d0>, 'print_age': <function Student.print_age at 0x7fc84fa2ba60>, 'print_score': <function Student.print_score at 0x7fc84fa2baf0>, '__str__': <function Student.__str__ at 0x7fc84fa2bb80>, '__dict__': <attribute '__dict__' of 'Student' objects>, '__weakref__': <attribute '__weakref__' of 'Student' objects>}
 ```
+
 ### 7.3  类的继承
 在Python中，可以通过类的继承机制来实现代码的重用。当定义一个新类时，可以继承自某个现有的类，通过继承创建的新类称为子类（Sub class），被继承的类称为基类、父类或超类（Base class、Super class）。创建一个继承类的语法如下：
 ```python
